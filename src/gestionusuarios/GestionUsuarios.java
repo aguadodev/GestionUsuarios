@@ -9,8 +9,9 @@ import javax.swing.*;
 public class GestionUsuarios extends JFrame{
     
     Usuario admin;
-    JTextField username, password;
-    JButton login;
+    static Usuario[] usuarios = new Usuario[0];
+    JTextField txtUsername, pwdPassword;
+    JButton btnLogin;
     
     public GestionUsuarios() {
         // CREA EL USUARIO ADMIN
@@ -22,17 +23,16 @@ public class GestionUsuarios extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new GridLayout());
         add(new JLabel("Usuario"));
-        username = new JTextField();
-        add(username);
+        txtUsername = new JTextField();
+        add(txtUsername);
         add(new JLabel("Contraseña"));
-        password = new JPasswordField();
-        add(password);
-        login = new JButton("Iniciar sesión");
-        login.addActionListener(new OyenteBoton());
-        add(login);   
+        pwdPassword = new JPasswordField();
+        add(pwdPassword);
+        btnLogin = new JButton("Iniciar sesión");
+        btnLogin.addActionListener(new OyenteBoton());
+        add(btnLogin);   
         
-        setVisible(true);
-                
+        setVisible(true);                
     }
 
     
@@ -46,11 +46,17 @@ public class GestionUsuarios extends JFrame{
 // CLASE INTERNA
 class OyenteBoton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-        if (username.getText().equals(admin.username) && password.getText().equals(admin.password)){
+        if (txtUsername.getText().equals(admin.username) && pwdPassword.getText().equals(admin.password)){
             //System.out.println("LOGIN OK");
-            JOptionPane.showMessageDialog(null, "Bienvenid@!!",
-                    "INICIO DE SESIÓN CON ÉXITO", JOptionPane.INFORMATION_MESSAGE);            
-            //...
+            //JOptionPane.showMessageDialog(null, "Bienvenid@!!",
+            //        "INICIO DE SESIÓN CON ÉXITO", JOptionPane.INFORMATION_MESSAGE);            
+            //Mostrar ventana Nuevo Usuario
+            
+            VentanaPrincipal frmVentanaPrincipal = new VentanaPrincipal();
+            frmVentanaPrincipal.setVisible(true);
+            
+/*            NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
+            frmNuevoUsuario.setVisible(true);*/
             
         } else {
             //System.out.println("LOGIN FAIL");
@@ -58,7 +64,7 @@ class OyenteBoton implements ActionListener {
                     "ERROR DE INICIO DE SESIÓN", JOptionPane.ERROR_MESSAGE);
         }
     }
-}
+    }
     
     
     
