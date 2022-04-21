@@ -115,7 +115,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
                 || pwdRPassword.getPassword().length == 0
                 || !pwdPassword.getText().equals(pwdRPassword.getText())) // 2. Si algo va mal => Mostrar un mensaje: cuadro de diálogo, etc.        
         {
-            JOptionPane.showMessageDialog(null, "El nombre de usuario y la contraseña no "
+            JOptionPane.showMessageDialog(this, "El nombre de usuario y la contraseña no "
                     + "pueden estar vacíos y las contraseñas deben coincidir.",
                     "ERROR AL CREAR USUARIO", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -123,45 +123,10 @@ public class NuevoUsuario extends javax.swing.JFrame {
             GestionUsuarios.usuarios = Arrays.copyOf(GestionUsuarios.usuarios, GestionUsuarios.usuarios.length + 1);
             Usuario nuevoUsuario = new Usuario(txtUsername.getText(), pwdPassword.getPassword().toString(), txtEmail.getText());
             GestionUsuarios.usuarios[GestionUsuarios.usuarios.length - 1] = nuevoUsuario;
-            JOptionPane.showMessageDialog(null, "Usuario " + nuevoUsuario + " creado correctamente.",
+            JOptionPane.showMessageDialog(this, "Usuario " + nuevoUsuario + " creado correctamente.",
                     "Usuario creado", JOptionPane.INFORMATION_MESSAGE);            
         }
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NuevoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NuevoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NuevoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NuevoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NuevoUsuario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevoUsuario;

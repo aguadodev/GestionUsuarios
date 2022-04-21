@@ -1,4 +1,3 @@
-
 package gestionusuarios;
 
 import java.awt.*;
@@ -6,66 +5,74 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class GestionUsuarios extends JFrame{
-    
+public class GestionUsuarios extends JFrame {
+
+    // Usuario admin declarado separadamente
     Usuario admin;
+    // Array vacío de usuarios
     static Usuario[] usuarios = new Usuario[0];
+    // Controles del formulario
     JTextField txtUsername, pwdPassword;
     JButton btnLogin;
-    
+
     public GestionUsuarios() {
         // CREA EL USUARIO ADMIN
         admin = new Usuario("admin", "abc123.,", "admin@admin.org");
-        
+
         // CREA LA VENTANA
         setTitle("Gestión de Usuarios");
-        setBounds(300, 300, 400, 300);
+        this.setResizable(false);
+        setBounds(300, 300, 350, 100);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout());
+        this.setLayout(new FlowLayout());
+
+        // USUARIO (con valor por defecto)
         add(new JLabel("Usuario"));
-        txtUsername = new JTextField();
+        txtUsername = new JTextField("admin");        
+        txtUsername.setPreferredSize(new Dimension(100, 20));
         add(txtUsername);
+
+        // CONTRASEÑA (con valor por defecto)
         add(new JLabel("Contraseña"));
-        pwdPassword = new JPasswordField();
+        pwdPassword = new JPasswordField("abc123.,");
+        pwdPassword.setPreferredSize(new Dimension(100, 20));
         add(pwdPassword);
+
+        // BOTÓN
         btnLogin = new JButton("Iniciar sesión");
-        btnLogin.addActionListener(new OyenteBoton());
-        add(btnLogin);   
-        
-        setVisible(true);                
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validarLogin();
+            }
+        });
+        add(btnLogin);
+
+        // Muestra la ventana
+        setVisible(true);
     }
 
-    
-    
     public static void main(String[] args) {
         GestionUsuarios ventanaPrincipal = new GestionUsuarios();
-        
-        
     }
 
-// CLASE INTERNA
-class OyenteBoton implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
-        if (txtUsername.getText().equals(admin.username) && pwdPassword.getText().equals(admin.password)){
+    private void validarLogin() {
+        if (txtUsername.getText().equals(admin.username) && pwdPassword.getText().equals(admin.password)) {
             //System.out.println("LOGIN OK");
             //JOptionPane.showMessageDialog(null, "Bienvenid@!!",
             //        "INICIO DE SESIÓN CON ÉXITO", JOptionPane.INFORMATION_MESSAGE);            
             //Mostrar ventana Nuevo Usuario
-            
+
             VentanaPrincipal frmVentanaPrincipal = new VentanaPrincipal();
             frmVentanaPrincipal.setVisible(true);
-            
-/*            NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
-            frmNuevoUsuario.setVisible(true);*/
-            
+            this.setVisible(false);
+            this.dispose();
+
         } else {
             //System.out.println("LOGIN FAIL");
-            JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos!!",
+            JOptionPane.showMessageDialog(this, "Nombre de usuario o contraseña incorrectos!!",
                     "ERROR DE INICIO DE SESIÓN", JOptionPane.ERROR_MESSAGE);
         }
     }
-    }
-    
-    
-    
+
 }
