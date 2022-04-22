@@ -58,11 +58,6 @@ public class GestionUsuarios extends JFrame {
 
     private void validarLogin() {
         if (txtUsername.getText().equals(admin.username) && pwdPassword.getText().equals(admin.password)) {
-            //System.out.println("LOGIN OK");
-            //JOptionPane.showMessageDialog(null, "Bienvenid@!!",
-            //        "INICIO DE SESIÓN CON ÉXITO", JOptionPane.INFORMATION_MESSAGE);            
-            //Mostrar ventana Nuevo Usuario
-
             VentanaPrincipal frmVentanaPrincipal = new VentanaPrincipal();
             frmVentanaPrincipal.setVisible(true);
             this.setVisible(false);
