@@ -1,4 +1,3 @@
-
 package gestionusuarios;
 
 import java.util.Arrays;
@@ -73,8 +72,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
         // TODO add your handling code here:
-        NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
-        frmNuevoUsuario.setVisible(true);
+        if (frmNuevoUsuario == null || !frmNuevoUsuario.isVisible()) {
+            frmNuevoUsuario = new NuevoUsuario();
+            frmNuevoUsuario.setVisible(true);
+        }
+
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
     private void btnListadoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoUsuariosActionPerformed
@@ -82,7 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Al pulsar el botón simplemente muestra el listado de usuarios en la etiqueta
         lblListadoUsuarios.setText(Arrays.toString(GestionUsuarios.usuarios));
     }//GEN-LAST:event_btnListadoUsuariosActionPerformed
-
+    NuevoUsuario frmNuevoUsuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnListadoUsuarios;
     private javax.swing.JButton btnNuevoUsuario;

@@ -33,6 +33,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Usuario");
+        setResizable(false);
 
         jLabel1.setText("username");
 
@@ -120,11 +121,20 @@ public class NuevoUsuario extends javax.swing.JFrame {
                     "ERROR AL CREAR USUARIO", JOptionPane.ERROR_MESSAGE);
         } else {
             // 3. Crear objeto Usuario y añadirlo a donde corresponda: array, fichero, BD
-            GestionUsuarios.usuarios = Arrays.copyOf(GestionUsuarios.usuarios, GestionUsuarios.usuarios.length + 1);
             Usuario nuevoUsuario = new Usuario(txtUsername.getText(), pwdPassword.getPassword().toString(), txtEmail.getText());
-            GestionUsuarios.usuarios[GestionUsuarios.usuarios.length - 1] = nuevoUsuario;
-            JOptionPane.showMessageDialog(this, "Usuario " + nuevoUsuario + " creado correctamente.",
-                    "Usuario creado", JOptionPane.INFORMATION_MESSAGE);            
+
+            if (UtilGenerico.buscar(nuevoUsuario, GestionUsuarios.usuarios)) {
+                JOptionPane.showMessageDialog(this, "El usuario ya existe",
+                        "ERROR AL CREAR USUARIO", JOptionPane.ERROR_MESSAGE);
+            } else {
+                GestionUsuarios.usuarios = UtilGenerico.add(nuevoUsuario, GestionUsuarios.usuarios);
+                /* Versión de inserción anterior al uso de métodos genéricos.
+                GestionUsuarios.usuarios = Arrays.copyOf(GestionUsuarios.usuarios, GestionUsuarios.usuarios.length + 1);
+                GestionUsuarios.usuarios[GestionUsuarios.usuarios.length - 1] = nuevoUsuario;
+                */
+                JOptionPane.showMessageDialog(this, "Usuario " + nuevoUsuario + " creado correctamente.",
+                        "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
