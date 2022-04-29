@@ -3,6 +3,7 @@ package gestionusuarios;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 import javax.swing.*;
 
 public class GestionUsuarios extends JFrame {
@@ -11,6 +12,10 @@ public class GestionUsuarios extends JFrame {
     Usuario admin;
     // Array vacío de usuarios
     static Usuario[] usuarios = new Usuario[0];
+    
+    // Colección de Usuarios
+    static Collection <Usuario> cUsuarios = new ArrayList<>();
+    
     // Controles del formulario
     JTextField txtUsername, pwdPassword;
     JButton btnLogin;

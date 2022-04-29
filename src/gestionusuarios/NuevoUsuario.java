@@ -123,6 +123,17 @@ public class NuevoUsuario extends javax.swing.JFrame {
             // 3. Crear objeto Usuario y añadirlo a donde corresponda: array, fichero, BD
             Usuario nuevoUsuario = new Usuario(txtUsername.getText(), pwdPassword.getPassword().toString(), txtEmail.getText());
 
+            // LISTA DE USUARIOS IMPLEMENTADA CON COLECCIONES
+            if (GestionUsuarios.cUsuarios.contains(nuevoUsuario)) {
+                JOptionPane.showMessageDialog(this, "El usuario ya existe",
+                        "ERROR AL CREAR USUARIO", JOptionPane.ERROR_MESSAGE);
+            } else {
+                GestionUsuarios.cUsuarios.add(nuevoUsuario);
+                JOptionPane.showMessageDialog(this, "Usuario " + nuevoUsuario + " creado correctamente.",
+                        "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // LISTA DE USUARIOS IMPLEMENTADA CON ARRAYS
             if (UtilGenerico.buscar(nuevoUsuario, GestionUsuarios.usuarios)) {
                 JOptionPane.showMessageDialog(this, "El usuario ya existe",
                         "ERROR AL CREAR USUARIO", JOptionPane.ERROR_MESSAGE);
@@ -131,7 +142,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
                 /* Versión de inserción anterior al uso de métodos genéricos.
                 GestionUsuarios.usuarios = Arrays.copyOf(GestionUsuarios.usuarios, GestionUsuarios.usuarios.length + 1);
                 GestionUsuarios.usuarios[GestionUsuarios.usuarios.length - 1] = nuevoUsuario;
-                */
+                 */
                 JOptionPane.showMessageDialog(this, "Usuario " + nuevoUsuario + " creado correctamente.",
                         "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
             }

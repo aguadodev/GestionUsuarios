@@ -82,7 +82,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnListadoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoUsuariosActionPerformed
         // TODO add your handling code here:
         // Al pulsar el botón simplemente muestra el listado de usuarios en la etiqueta
-        lblListadoUsuarios.setText(Arrays.toString(GestionUsuarios.usuarios));
+        lblListadoUsuarios.setText(GestionUsuarios.cUsuarios.toString());
+        
+        
+        //lblListadoUsuarios.setText(Arrays.toString(GestionUsuarios.usuarios));
     }//GEN-LAST:event_btnListadoUsuariosActionPerformed
     NuevoUsuario frmNuevoUsuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
